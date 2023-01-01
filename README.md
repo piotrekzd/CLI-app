@@ -12,7 +12,7 @@ please run `node index.js -h` in your terminal
 Have fun!
 
 ## Links to the results:
-`https://ibb.co/WfHCt5Z`
-`https://ibb.co/M5Gvfrq`
-`https://ibb.co/GJQ7my4`
-`https://ibb.co/q5Cts6m`
+[1](https://ibb.co/WfHCt5Z)  
+[2](https://ibb.co/M5Gvfrq)  
+[3](https://ibb.co/GJQ7my4)  
+[4](https://ibb.co/q5Cts6m)
