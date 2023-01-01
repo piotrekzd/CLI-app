@@ -1,5 +1,5 @@
-## GoIT Node.js first homework
+# GoIT Node.js first homework
 
-# CLI application
+## CLI application
 To setup, clone this repository to your local machine
 
