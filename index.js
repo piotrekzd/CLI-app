@@ -1,9 +1,10 @@
 import { Command } from 'commander';
-import { listContacts, getContactsById, addContact, removeContact } from './contacts';
+import { listContacts, getContactsById, addContact, removeContact } from './contacts.js';
 
 const program = new Command();
 
 program
+    .name('contacts manager')
     .option('-a, --action <type>', 'choose action')
     .option('-i, --id <type>', 'user id')
     .option('-n, --name <type>', 'user name')

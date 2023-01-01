@@ -1,9 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
+import color from 'colors'
 
 const contactsPath = path.resolve('db');
 
-export const listContacts = async () => {
+export const fetchContacts = async () => {
     try {
         const data = await fs.readFile(contactsPath, { encoding: 'utf-8' });
         const contactsList = JSON.parse(data);
@@ -13,11 +14,25 @@ export const listContacts = async () => {
     };
 };
 
+export const listContacts = async () => {
+    try {
+        const contacts = await fetchContacts();
+        console.table(contacts)
+        return;
+    } catch (error) {
+        console.log(error.message);
+    };
+};
+
 export const getContactsById = async (contactId) => {
     try {
-        const contacts = await listContacts();
+        const contacts = await fetchContacts();
         const requestContactById = contacts.find(({ id }) => id === contactId);
-        return requestContactById;
+        if (!requestContactById) {
+            console.log(color.red('This contact does not exist!'))
+        } else {
+            console.log(requestContactById);
+        };
     } catch (error) {
         console.log(error.message);
     };
@@ -25,7 +40,7 @@ export const getContactsById = async (contactId) => {
 
 export const addContact = async (name, email, phone) => {
     try {
-        const contacts = await listContacts();
+        const contacts = await fetchContacts();
         const newId = Math.max(...contacts.map(contact => parseInt(contact.id, 10))) + 1;
         const newContact = { id: newId.toString(), name, email, phone };
         const updatedContacts = [...contacts, newContact];
@@ -37,7 +52,7 @@ export const addContact = async (name, email, phone) => {
 
 export const removeContact = async (contactId) => {
     try {
-        const contacts = await listContacts();
+        const contacts = await fetchContacts();
         const filteredContacts = contacts.filter(({ id }) => id !== contactId);
         await fs.writeFile(contactsPath, JSON.stringify(filteredContacts, null, 2), { encoding: 'utf-8' });
     } catch (error) {
