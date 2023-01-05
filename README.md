@@ -3,6 +3,8 @@
 ## CLI application
 To setup, clone this repository to your local machine
 
+Run `npm install` to install all dependencies  
+
 To start the `contacts manager`,
 please run `node index.js` in your terminal
 
