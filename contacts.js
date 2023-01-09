@@ -31,7 +31,7 @@ export const getContactsById = async (contactId) => {
         if (!requestContactById) {
             console.log(color.red('This contact does not exist!'))
         } else {
-            console.log(requestContactById);
+            console.table(requestContactById);
         };
     } catch (error) {
         console.log(error.message);
@@ -45,7 +45,8 @@ export const addContact = async (name, email, phone) => {
         const newContact = { id: newId.toString(), name, email, phone };
         const updatedContacts = [...contacts, newContact];
         await fs.writeFile(contactsPath, JSON.stringify(updatedContacts, null, 2), { encoding: 'utf-8' });
-        console.log(color.green('Contact added successfully!'))
+        console.log(color.green('Contact added successfully!'));
+        console.table(newContact);
     } catch (error) {
         console.log(error.message);
     };
@@ -56,7 +57,7 @@ export const removeContact = async (contactId) => {
         const contacts = await fetchContacts();
         const filteredContacts = contacts.filter(({ id }) => id !== contactId);
         await fs.writeFile(contactsPath, JSON.stringify(filteredContacts, null, 2), { encoding: 'utf-8' });
-        console.log(color.green('Contact removed successfully!'))
+        console.log(color.green('Contact removed successfully!'));
     } catch (error) {
         console.log(error.message);
     };
